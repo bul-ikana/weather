@@ -1,0 +1,25 @@
+body {
+  background-color: #eeffff;
+}
+
+nav {
+  background-color: #bbdefb;
+}
+
+.weather-card {
+  max-width: 200px;
+}
+
+.card-header  {
+  background-color: #fff;
+}
+
+.weather-icon {
+  max-width: 50%;
+  max-height: 50%;
+  margin-bottom: 10px;
+}
+
+.margin-center {
+  margin: auto;
+}

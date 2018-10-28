@@ -1,16 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Weather</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="styles.css" >
+  <title>Weather</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css" >
 </head>
 <body>
-	<div id="app">
-		Weather ☁️
-	</div>
+  <div id="app">
 
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="code.js"></script>
+    <nav class="navbar navbar-light mb-4">
+      <span class="navbar-brand mb-0 h1 margin-center"> Weather ☁️</span>
+    </nav>
+
+    <div class="container">
+
+      <form class="w-50 my-5 margin-center">
+        <div class="input-group w-100">
+          <input type="text" class="form-control" aria-label="Search" aria-describedby="search bar">
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="button">Search</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+
+        <div class="col-md-4">
+
+          <div class="card text-center my-2 weather-card margin-center">
+            <div class="card-header h5"> Dublin </div>
+            <div class="card-body">
+              <img src="https://www.metaweather.com/static/img/weather/s.svg" class="weather-icon">
+              <p class="h4"> 38° </p>
+              <small>Max 40° / Min 30°</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="card text-center my-2 weather-card margin-center">
+            <div class="card-header h5"> Dublin </div>
+            <div class="card-body">
+              <img src="https://www.metaweather.com/static/img/weather/s.svg" class="weather-icon">
+              <p class="h4"> 38° </p>
+              <small>Max 40° / Min 30°</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="card text-center my-2 weather-card margin-center">
+            <div class="card-header h5"> Dublin </div>
+            <div class="card-body">
+              <img src="https://www.metaweather.com/static/img/weather/s.svg" class="weather-icon">
+              <p class="h4"> 38° </p>
+              <small>Max 40° / Min 30°</small>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+
+          <div class="card text-center my-2 weather-card margin-center">
+            <div class="card-header h5"> Dublin </div>
+            <div class="card-body">
+              <img src="https://www.metaweather.com/static/img/weather/s.svg" class="weather-icon">
+              <p class="h4"> 38° </p>
+              <small>Max 40° / Min 30°</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="card text-center my-2 weather-card margin-center">
+            <div class="card-header h5"> Dublin </div>
+            <div class="card-body">
+              <img src="https://www.metaweather.com/static/img/weather/s.svg" class="weather-icon">
+              <p class="h4"> 38° </p>
+              <small>Max 40° / Min 30°</small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="card text-center my-2 weather-card margin-center">
+            <div class="card-header h5"> Dublin </div>
+            <div class="card-body">
+              <img src="https://www.metaweather.com/static/img/weather/s.svg" class="weather-icon">
+              <p class="h4"> 38° </p>
+              <small>Max 40° / Min 30°</small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="code.js"></script>
 </body>
 </html>
