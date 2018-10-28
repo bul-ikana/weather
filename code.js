@@ -1,7 +1,7 @@
 //                         //
 // Basic app configuration //
 //                         //
-const API_URL = "http://localhost:8080/weather/weather.php";
+const API_URL = "";
 
 //                      //
 // Component definition //
