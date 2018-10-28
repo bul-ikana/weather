@@ -58,6 +58,15 @@ const frontpage = Vue.component('frontpage', {
   template: '#frontpage'
 })
 
+// detailspage
+const detailspage = Vue.component('detailspage', {
+  template: '#detailspage',
+
+  props: [
+    'woeid'
+  ]
+})
+
 //                   //
 // Router definition //
 //                   //
@@ -68,6 +77,12 @@ const router = new VueRouter ({
       path: '/',
       name: 'Front',
       component: frontpage
+    },
+    {
+      path: '/weather/:woeid',
+      name: 'Details',
+      component: detailspage,
+      props: true
     },
     {
       path: '*',
