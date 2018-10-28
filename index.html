@@ -10,11 +10,12 @@
   <div class="col-md-4">
 
     <div class="card text-center my-2 weather-card margin-center">
-      <div class="card-header h5"> {{ title }} </div>
+      <div class="card-header h5" :class="{ hidden: loading }"> {{ title }} </div>
       <div class="card-body">
-        <img :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
-        <p class="h4"> {{ the_temp | celcius }} </p>
-        <small>Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
+        <img :class="{ hidden: loading }" :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
+        <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon">
+        <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celcius }} </p>
+        <small :class="{ hidden: loading }">Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
       </div>
     </div>
   </div>

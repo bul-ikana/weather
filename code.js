@@ -14,6 +14,7 @@ const weather = Vue.component('weather', {
 
   data () {
     return {
+      loading: true,
       title: '',
       the_temp: '',
       min_temp: '',
@@ -40,6 +41,7 @@ const weather = Vue.component('weather', {
         this.min_temp = response.data.consolidated_weather[0].min_temp
         this.max_temp = response.data.consolidated_weather[0].max_temp
         this.weather_state_abbr = response.data.consolidated_weather[0].weather_state_abbr
+        this.loading = false
       })
   },
 
