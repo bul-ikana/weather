@@ -82,6 +82,59 @@ const frontpage = Vue.component('frontpage', {
   template: '#frontpage'
 })
 
+// searchpage
+const searchpage = Vue.component('searchpage', {
+  template: '#searchpage',
+
+  data () {
+    return {
+      locations: [],
+      loading: true
+    }
+  },
+
+  props: [
+    'keyword'
+  ],
+
+  mounted () {
+    axios
+      .get(API_URL, {
+        params: {
+          command: 'search',
+          keyword: this.keyword
+        }
+      })
+      .then( response => {
+        console.log(response.data)
+        this.locations = response.data
+        this.loading =  false
+      })
+  },
+
+  beforeRouteUpdate (to, from, next) {
+    this.loading = true
+
+    console.log("to", to)
+    console.log("from", from)
+    console.log("next", next)
+    axios
+      .get(API_URL, {
+        params: {
+          command: 'search',
+          keyword: to.params.keyword
+        }
+      })
+      .then( response => {
+        console.log(response.data)
+        this.locations = response.data
+        this.loading =  false
+        next();
+      })
+
+  }
+})
+
 // detailspage
 const detailspage = Vue.component('detailspage', {
   template: '#detailspage',
@@ -126,6 +179,13 @@ const router = new VueRouter ({
       component: frontpage
     },
     {
+      path: '/search/:keyword',
+      name: 'Search',
+      component: searchpage,
+      props: true
+    },
+
+    {
       path: '/weather/:woeid',
       name: 'Details',
       component: detailspage,
@@ -145,5 +205,10 @@ const router = new VueRouter ({
 
 var vm = new Vue({
   el: '#app',
-  router
+  router,
+  data () {
+    return {
+      keyword: ''
+    }
+  }
 })

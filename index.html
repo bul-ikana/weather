@@ -54,6 +54,24 @@
   </div>
 </template>
 
+<template id="searchpage">
+  <div>
+    <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon margin-auto d-block mx-auto">
+    <div :class="{ hidden: loading }">
+      <h5>Search results for: {{ keyword }}</h5>
+      <h6 :class="{ hidden: locations.length > 0 }">No results were found. Try changing the keyword!</h6>
+      <div class="row">
+        <weather
+          v-for="location in locations"
+          :key="location.woeid"
+          :woeid="location.woeid"
+        ></weather>
+      </div>
+    </div>
+
+  </div>
+</template>
+
 <template id="detailspage">
   <div>
     <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon margin-auto d-block mx-auto">
@@ -82,9 +100,9 @@
 
       <form class="w-50 my-4 margin-center">
         <div class="input-group w-100">
-          <input type="text" class="form-control" aria-label="Search" aria-describedby="search bar">
+          <input type="text" class="form-control" aria-label="Search" aria-describedby="search bar" v-model="keyword">
           <div class="input-group-append">
-            <button class="btn btn-secondary" type="button">Search</button>
+            <router-link tag="button" :to="{name: 'Search', params: {keyword: keyword}}" class="btn btn-info" type="submit">Search</router-link>
           </div>
         </div>
       </form>
