@@ -93,7 +93,8 @@ const detailspage = Vue.component('detailspage', {
   data () {
     return {
       title: '',
-      consolidated_weather: []
+      consolidated_weather: [],
+      loading: true
     }
   },
 
@@ -106,14 +107,9 @@ const detailspage = Vue.component('detailspage', {
         }
       })
       .then( response => {
-        console.log(response.data)
         this.title = response.data.title
         this.consolidated_weather = response.data.consolidated_weather
-        // this.the_temp = response.data.consolidated_weather[0].the_temp
-        // this.min_temp = response.data.consolidated_weather[0].min_temp
-        // this.max_temp = response.data.consolidated_weather[0].max_temp
-        // this.weather_state_abbr = response.data.consolidated_weather[0].weather_state_abbr
-        // this.loading = false
+        this.loading = false
       })
   }
 })

@@ -56,6 +56,7 @@
 
 <template id="detailspage">
   <div>
+    <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon margin-auto d-block mx-auto">
     <h2>{{ title }}</h2>
     <weatherline
       v-for="weather in consolidated_weather"
@@ -88,7 +89,7 @@
         </div>
       </form>
 
-      <keep-alive>
+      <keep-alive include="frontpage">
         <router-view></router-view>
       </keep-alive>
       
