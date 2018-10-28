@@ -10,11 +10,11 @@
   <div class="col-md-4">
 
     <div class="card text-center my-2 weather-card margin-center">
-      <div class="card-header h5"> Dublin </div>
+      <div class="card-header h5"> {{ title }} </div>
       <div class="card-body">
-        <img src="https://www.metaweather.com/static/img/weather/s.svg" class="weather-icon">
-        <p class="h4"> 38° </p>
-        <small>Max 40° / Min 30°</small>
+        <img :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
+        <p class="h4"> {{ the_temp }} </p>
+        <small>Min {{ min_temp }} / Max {{ max_temp }}</small>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
 
     <div class="container">
 
-      <form class="w-50 my-5 margin-center">
+      <form class="w-50 my-4 margin-center">
         <div class="input-group w-100">
           <input type="text" class="form-control" aria-label="Search" aria-describedby="search bar">
           <div class="input-group-append">
@@ -41,17 +41,53 @@
 
       <div class="row">
 
-        <weather></weather>
-        <weather></weather>
-        <weather></weather>
+        <weather
+          title="Istanbul"
+          the_temp="28°"
+          min_temp="20°"
+          max_temp="30°"
+          weather_state_abbr="sn"
+        ></weather>
+        <weather
+          title="Berlin"
+          the_temp="28°"
+          min_temp="20°"
+          max_temp="30°"
+          weather_state_abbr="sn"
+        ></weather>
+        <weather
+          title="London"
+          the_temp="28°"
+          min_temp="20°"
+          max_temp="30°"
+          weather_state_abbr="sn"
+        ></weather>
 
       </div>
 
       <div class="row">
 
-        <weather></weather>
-        <weather></weather>
-        <weather></weather>
+        <weather
+          title="Helsinki"
+          the_temp="28°"
+          min_temp="20°"
+          max_temp="30°"
+          weather_state_abbr="sn"
+        ></weather>
+        <weather
+          title="Dublin"
+          the_temp="28°"
+          min_temp="20°"
+          max_temp="30°"
+          weather_state_abbr="sn"
+        ></weather>
+        <weather
+          title="Vancouver"
+          the_temp="28°"
+          min_temp="20°"
+          max_temp="30°"
+          weather_state_abbr="sn"
+        ></weather>
 
       </div>
       
