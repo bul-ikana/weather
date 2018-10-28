@@ -21,6 +21,26 @@
   </div>
 </template>
 
+<template id="frontpage">
+  <div>
+    <div class="row">
+
+      <weather woeid="2344116"></weather>
+      <weather woeid="638242"></weather>
+      <weather woeid="44418"></weather>
+    
+    </div>
+
+    <div class="row">
+
+      <weather woeid="565346"></weather>
+      <weather woeid="560743"></weather>
+      <weather woeid="9807"></weather>
+
+    </div>
+  </div>
+</template>
+
 
 <body>
   <div id="app">
@@ -40,26 +60,13 @@
         </div>
       </form>
 
-      <div class="row">
-
-        <weather woeid="2344116"></weather>
-        <weather woeid="638242"></weather>
-        <weather woeid="44418"></weather>
-      
-      </div>
-
-      <div class="row">
-
-        <weather woeid="565346"></weather>
-        <weather woeid="560743"></weather>
-        <weather woeid="9807"></weather>
-
-      </div>
+      <router-view></router-view>
       
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="code.js"></script>
 </body>

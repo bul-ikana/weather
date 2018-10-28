@@ -8,7 +8,6 @@ const API_URL = "http://localhost:8080/weather/weather.php";
 //                      //
 
 // Weather card //
-
 const weather = Vue.component('weather', {
   template: '#weather',
 
@@ -54,11 +53,35 @@ const weather = Vue.component('weather', {
   }
 })
 
+// frontpage
+const frontpage = Vue.component('frontpage', {
+  template: '#frontpage'
+})
+
+//                   //
+// Router definition //
+//                   //
+
+const router = new VueRouter ({
+  routes: [
+    {
+      path: '/',
+      name: 'Front',
+      component: frontpage
+    },
+    {
+      path: '*',
+      redirect: '/'
+    }
+  ]
+})
+
 
 //                //
 // Vue definition //
 //                //
 
 var vm = new Vue({
-  el: '#app'
+  el: '#app',
+  router
 })
