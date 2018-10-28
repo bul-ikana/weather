@@ -1,16 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Weather</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="styles.css" >
+  <title>Weather</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css" >
 </head>
-<body>
-	<div id="app">
-		Weather ☁️
-	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="code.js"></script>
+<template id="weather">
+  <div class="col-md-4">
+
+    <div class="card text-center my-2 weather-card margin-center">
+      <div class="card-header h5" :class="{ hidden: loading }"> {{ title }} </div>
+      <div class="card-body">
+        <img :class="{ hidden: loading }" :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
+        <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon">
+        <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celcius }} </p>
+        <small :class="{ hidden: loading }">Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<body>
+  <div id="app">
+
+    <nav class="navbar navbar-light mb-4">
+      <span class="navbar-brand mb-0 h1 margin-center"> Weather ☁️</span>
+    </nav>
+
+    <div class="container">
+
+      <form class="w-50 my-4 margin-center">
+        <div class="input-group w-100">
+          <input type="text" class="form-control" aria-label="Search" aria-describedby="search bar">
+          <div class="input-group-append">
+            <button class="btn btn-secondary" type="button">Search</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="row">
+
+        <weather woeid="2344116"></weather>
+        <weather woeid="638242"></weather>
+        <weather woeid="44418"></weather>
+      
+      </div>
+
+      <div class="row">
+
+        <weather woeid="565346"></weather>
+        <weather woeid="560743"></weather>
+        <weather woeid="9807"></weather>
+
+      </div>
+      
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="code.js"></script>
 </body>
 </html>
