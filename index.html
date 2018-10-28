@@ -14,11 +14,23 @@
         <div class="card-body">
           <img :class="{ hidden: loading }" :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
           <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon">
-          <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celcius }} </p>
-          <small :class="{ hidden: loading }">Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
+          <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celsius }} </p>
+          <small :class="{ hidden: loading }">Min {{ min_temp | celsius }} / Max {{ max_temp | celsius }}</small>
         </div>
       </div>
     </router-link>
+  </div>
+</template>
+
+<template id="weatherline">
+  <div>
+    <h5>{{ applicable_date | dayofweek }}</h5>
+    <div class="weather-line">
+      <img  :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon-line">
+      <h5>{{ the_temp | celsius }}</h5>
+      <small>Min {{ min_temp | celsius }} / Max {{ max_temp | celsius }}</small>
+    </div>
+
   </div>
 </template>
 
@@ -44,7 +56,16 @@
 
 <template id="detailspage">
   <div>
-    {{ woeid }}
+    <h2>{{ title }}</h2>
+    <weatherline
+      v-for="weather in consolidated_weather"
+      :key="weather.id"
+      :the_temp="weather.the_temp"
+      :min_temp="weather.min_temp"
+      :max_temp="weather.max_temp"
+      :applicable_date="weather.applicable_date"
+      :weather_state_abbr="weather.weather_state_abbr"
+    ></weatherline>
   </div>
 </template>
 
@@ -66,7 +87,7 @@
           </div>
         </div>
       </form>
-      
+
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
@@ -74,6 +95,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

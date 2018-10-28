@@ -29,6 +29,21 @@ nav a {
   margin-bottom: 10px;
 }
 
+.weather-line {
+  margin-bottom: 20px;
+}
+
+.weather-line > *{
+  display: inline;
+  margin-right: 20px;
+}
+
+.weather-icon-line {
+  max-width: 50px;
+  max-height: 50px;
+  margin-bottom: 10px;
+}
+
 .margin-center {
   margin: auto;
 }
