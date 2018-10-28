@@ -10,8 +10,13 @@ nav {
   background-color: #bbdefb;
 }
 
+nav a {
+  color: rgba(0,0,0,.9);
+}
+
 .weather-card {
   max-width: 200px;
+  cursor: pointer;
 }
 
 .card-header  {

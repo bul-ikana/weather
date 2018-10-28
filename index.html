@@ -8,16 +8,17 @@
 
 <template id="weather">
   <div class="col-md-4">
-
-    <div class="card text-center my-2 weather-card margin-center">
-      <div class="card-header h5" :class="{ hidden: loading }"> {{ title }} </div>
-      <div class="card-body">
-        <img :class="{ hidden: loading }" :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
-        <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon">
-        <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celcius }} </p>
-        <small :class="{ hidden: loading }">Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
+    <router-link tag="div" :to="{ name: 'Details', params: { woeid: woeid }}">
+      <div class="card text-center my-2 weather-card margin-center">
+        <div class="card-header h5" :class="{ hidden: loading }"> {{ title }} </div>
+        <div class="card-body">
+          <img :class="{ hidden: loading }" :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
+          <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon">
+          <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celcius }} </p>
+          <small :class="{ hidden: loading }">Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
+        </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -52,7 +53,7 @@
   <div id="app">
 
     <nav class="navbar navbar-light mb-4">
-      <span class="navbar-brand mb-0 h1 margin-center"> Weather ☁️</span>
+      <span class="navbar-brand mb-0 h1 margin-center"> <router-link to="/">Weather ☁️</router-link></span>
     </nav>
 
     <div class="container">
@@ -65,8 +66,10 @@
           </div>
         </div>
       </form>
-
-      <router-view></router-view>
+      
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
       
     </div>
   </div>
