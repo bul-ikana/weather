@@ -1,0 +1,49 @@
+body {
+  background-color: #eeffff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+nav {
+  background-color: #bbdefb;
+}
+
+nav a {
+  color: rgba(0,0,0,.9);
+}
+
+.weather-card {
+  max-width: 200px;
+  cursor: pointer;
+}
+
+.card-header  {
+  background-color: #fff;
+}
+
+.weather-icon {
+  max-width: 50%;
+  max-height: 50%;
+  margin-bottom: 10px;
+}
+
+.weather-line {
+  margin-bottom: 20px;
+}
+
+.weather-line > *{
+  display: inline;
+  margin-right: 20px;
+}
+
+.weather-icon-line {
+  max-width: 50px;
+  max-height: 50px;
+  margin-bottom: 10px;
+}
+
+.margin-center {
+  margin: auto;
+}
