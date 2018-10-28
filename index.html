@@ -13,8 +13,8 @@
       <div class="card-header h5"> {{ title }} </div>
       <div class="card-body">
         <img :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
-        <p class="h4"> {{ the_temp }} </p>
-        <small>Min {{ min_temp }} / Max {{ max_temp }}</small>
+        <p class="h4"> {{ the_temp | celcius }} </p>
+        <small>Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
       </div>
     </div>
   </div>
@@ -41,61 +41,25 @@
 
       <div class="row">
 
-        <weather
-          title="Istanbul"
-          the_temp="28°"
-          min_temp="20°"
-          max_temp="30°"
-          weather_state_abbr="sn"
-        ></weather>
-        <weather
-          title="Berlin"
-          the_temp="28°"
-          min_temp="20°"
-          max_temp="30°"
-          weather_state_abbr="sn"
-        ></weather>
-        <weather
-          title="London"
-          the_temp="28°"
-          min_temp="20°"
-          max_temp="30°"
-          weather_state_abbr="sn"
-        ></weather>
-
+        <weather woeid="2344116"></weather>
+        <weather woeid="638242"></weather>
+        <weather woeid="44418"></weather>
+      
       </div>
 
       <div class="row">
 
-        <weather
-          title="Helsinki"
-          the_temp="28°"
-          min_temp="20°"
-          max_temp="30°"
-          weather_state_abbr="sn"
-        ></weather>
-        <weather
-          title="Dublin"
-          the_temp="28°"
-          min_temp="20°"
-          max_temp="30°"
-          weather_state_abbr="sn"
-        ></weather>
-        <weather
-          title="Vancouver"
-          the_temp="28°"
-          min_temp="20°"
-          max_temp="30°"
-          weather_state_abbr="sn"
-        ></weather>
+        <weather woeid="565346"></weather>
+        <weather woeid="560743"></weather>
+        <weather woeid="9807"></weather>
 
       </div>
       
-
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="code.js"></script>
 </body>
 </html>
