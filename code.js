@@ -8,7 +8,6 @@ const API_URL = "http://localhost:8080/weather/weather.php";
 //                      //
 
 // Weather card //
-
 const weather = Vue.component('weather', {
   template: '#weather',
 
@@ -46,12 +45,97 @@ const weather = Vue.component('weather', {
   },
 
   filters: {
-    celcius: function (value) {
+    celsius: function (value) {
       if (!value) return ''
 
       return Math.round(value) + '°'
     }
   }
+})
+
+const weatherline = Vue.component('weatherline', {
+  template: '#weatherline',
+
+  props: [
+    'applicable_date',
+    'weather_state_abbr',
+    'the_temp',
+    'min_temp',
+    'max_temp'
+  ],
+
+  filters: {
+    dayofweek: function (value) {
+      if (!value) return ''
+      return moment(value).format('dddd')
+    },
+    celsius: function (value) {
+      if (!value) return ''
+
+      return Math.round(value) + '°'
+    }
+  }
+})
+
+// frontpage
+const frontpage = Vue.component('frontpage', {
+  template: '#frontpage'
+})
+
+// detailspage
+const detailspage = Vue.component('detailspage', {
+  template: '#detailspage',
+
+  props: [
+    'woeid'
+  ],
+
+  data () {
+    return {
+      title: '',
+      consolidated_weather: [],
+      loading: true
+    }
+  },
+
+  mounted () {
+    axios
+      .get(API_URL, {
+        params: {
+          command: 'location',
+          woeid: this.woeid
+        }
+      })
+      .then( response => {
+        this.title = response.data.title
+        this.consolidated_weather = response.data.consolidated_weather
+        this.loading = false
+      })
+  }
+})
+
+//                   //
+// Router definition //
+//                   //
+
+const router = new VueRouter ({
+  routes: [
+    {
+      path: '/',
+      name: 'Front',
+      component: frontpage
+    },
+    {
+      path: '/weather/:woeid',
+      name: 'Details',
+      component: detailspage,
+      props: true
+    },
+    {
+      path: '*',
+      redirect: '/'
+    }
+  ]
 })
 
 
@@ -60,5 +144,6 @@ const weather = Vue.component('weather', {
 //                //
 
 var vm = new Vue({
-  el: '#app'
+  el: '#app',
+  router
 })

@@ -8,16 +8,65 @@
 
 <template id="weather">
   <div class="col-md-4">
-
-    <div class="card text-center my-2 weather-card margin-center">
-      <div class="card-header h5" :class="{ hidden: loading }"> {{ title }} </div>
-      <div class="card-body">
-        <img :class="{ hidden: loading }" :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
-        <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon">
-        <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celcius }} </p>
-        <small :class="{ hidden: loading }">Min {{ min_temp | celcius }} / Max {{ max_temp | celcius }}</small>
+    <router-link tag="div" :to="{ name: 'Details', params: { woeid: woeid }}">
+      <div class="card text-center my-2 weather-card margin-center">
+        <div class="card-header h5" :class="{ hidden: loading }"> {{ title }} </div>
+        <div class="card-body">
+          <img :class="{ hidden: loading }" :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon">
+          <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon">
+          <p :class="{ hidden: loading }" class="h4"> {{ the_temp | celsius }} </p>
+          <small :class="{ hidden: loading }">Min {{ min_temp | celsius }} / Max {{ max_temp | celsius }}</small>
+        </div>
       </div>
+    </router-link>
+  </div>
+</template>
+
+<template id="weatherline">
+  <div>
+    <h5>{{ applicable_date | dayofweek }}</h5>
+    <div class="weather-line">
+      <img  :src="'https://www.metaweather.com/static/img/weather/' + weather_state_abbr + '.svg'" class="weather-icon-line">
+      <h5>{{ the_temp | celsius }}</h5>
+      <small>Min {{ min_temp | celsius }} / Max {{ max_temp | celsius }}</small>
     </div>
+
+  </div>
+</template>
+
+<template id="frontpage">
+  <div>
+    <div class="row">
+
+      <weather woeid="2344116"></weather>
+      <weather woeid="638242"></weather>
+      <weather woeid="44418"></weather>
+    
+    </div>
+
+    <div class="row">
+
+      <weather woeid="565346"></weather>
+      <weather woeid="560743"></weather>
+      <weather woeid="9807"></weather>
+
+    </div>
+  </div>
+</template>
+
+<template id="detailspage">
+  <div>
+    <img :class="{ hidden: !loading }" src="spinner.svg" class="weather-icon margin-auto d-block mx-auto">
+    <h2>{{ title }}</h2>
+    <weatherline
+      v-for="weather in consolidated_weather"
+      :key="weather.id"
+      :the_temp="weather.the_temp"
+      :min_temp="weather.min_temp"
+      :max_temp="weather.max_temp"
+      :applicable_date="weather.applicable_date"
+      :weather_state_abbr="weather.weather_state_abbr"
+    ></weatherline>
   </div>
 </template>
 
@@ -26,7 +75,7 @@
   <div id="app">
 
     <nav class="navbar navbar-light mb-4">
-      <span class="navbar-brand mb-0 h1 margin-center"> Weather ☁️</span>
+      <span class="navbar-brand mb-0 h1 margin-center"> <router-link to="/">Weather ☁️</router-link></span>
     </nav>
 
     <div class="container">
@@ -40,26 +89,16 @@
         </div>
       </form>
 
-      <div class="row">
-
-        <weather woeid="2344116"></weather>
-        <weather woeid="638242"></weather>
-        <weather woeid="44418"></weather>
-      
-      </div>
-
-      <div class="row">
-
-        <weather woeid="565346"></weather>
-        <weather woeid="560743"></weather>
-        <weather woeid="9807"></weather>
-
-      </div>
+      <keep-alive include="frontpage">
+        <router-view></router-view>
+      </keep-alive>
       
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="code.js"></script>
 </body>
